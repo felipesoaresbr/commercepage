@@ -13,13 +13,8 @@
     }
 
     .products-container {
-        min-width: fit-content;
-        max-width: fit-content;
-        min-height: fit-content;
-        max-height: fit-content;
+        height: fit-content;
         background-color: transparent;
-
-        overflow: visible;
     }
 
     .products-container-content {
