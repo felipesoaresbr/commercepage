@@ -42,13 +42,18 @@
         display: none;
     }
 
+    .header-search-bar .search-input {
+        width: 80%;
+    }
+
     .header-search-bar .search-icon {
         height: 100%;
-        width: 40%;
+        width: 20%;
         background-color: white;
         border: none;
         display: flex;
         justify-content: center;
         align-items: center;
+        overflow: hidden;
     }
   }
