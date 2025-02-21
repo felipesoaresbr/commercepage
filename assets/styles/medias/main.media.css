@@ -1,11 +1,11 @@
 @media (min-width: 320px) and (max-width: 500px) {
     body {
+        height: 100vh;
         overflow-y: scroll;
     }
 
     .flash-promo {
-        height: fit-content;
-        
+        height: auto; 
     }
 
     .flash-promo-header {
