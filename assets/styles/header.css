@@ -71,6 +71,7 @@ body {
     border-radius: 40px;
     justify-self: center;
     overflow: hidden;
+    background-color: white;
 }
 
 .header-search-bar .search-input {
