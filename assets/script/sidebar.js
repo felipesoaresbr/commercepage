@@ -16,7 +16,7 @@ document.addEventListener('contentLoaded', () => {
         if(sidebar.classList.contains('open')) {
             body.style.overflowY = 'hidden'
         } else {
-            body.style.overflowY = 'auto'
+            body.style.overflowY = 'scroll'
         }
 
     })
@@ -36,9 +36,6 @@ document.addEventListener('contentLoaded', () => {
         })
 
     }
-
-
-
 
     getSidebarIcons()
 })

@@ -5,7 +5,7 @@
     
         pointer-events: none; 
     
-        overflow: auto;
+        overflow: hidden;
     
         transition: all 0.3s ease-in-out;
     }
