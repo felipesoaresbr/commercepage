@@ -16,3 +16,12 @@
     }
     
 }
+
+@media (min-width: 501px) and (max-width: 1919px) {
+    body {
+        height: 100vh;
+    }
+    .sidebar.open {
+        height: 100vh;
+    }
+}

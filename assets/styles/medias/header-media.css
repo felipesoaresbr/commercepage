@@ -60,3 +60,43 @@
         overflow: hidden;
     }
   }
+
+@media (min-width: 501px) and (max-width: 1919px) {
+    body {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .header-area {
+        font-size: 0.9em;
+        width: 100%;
+    }
+
+    .header-icons {
+        width: 30%;
+        margin: 0%;
+    }
+
+    .header-search-bar {
+        width: 40%;
+        margin: 0%;
+    }
+
+    .header-nav-menu {
+        min-width: 30%;
+        max-width: 30%;
+        padding-left: 0px;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .header-search-bar .search-input {
+        width: 90%;
+    }
+
+    .search-icon {
+        width: 10%;
+    }
+}

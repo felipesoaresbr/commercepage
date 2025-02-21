@@ -7,9 +7,18 @@ document.addEventListener('contentLoaded', () => {
 
 
     openButton.addEventListener('click', () => {
+        const body = parent.document.body;
+
         sidebar.classList.toggle('open')
         sidebarContent.classList.toggle('open')
         shadowBox.classList.toggle('visible')
+
+        if(sidebar.classList.contains('open')) {
+            body.style.overflowY = 'hidden'
+        } else {
+            body.style.overflowY = 'auto'
+        }
+
     })
 
     shadowBox.addEventListener('click', () => {
@@ -27,6 +36,9 @@ document.addEventListener('contentLoaded', () => {
         })
 
     }
+
+
+
 
     getSidebarIcons()
 })
