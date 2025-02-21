@@ -2,7 +2,8 @@ document.addEventListener('contentLoaded', () => {
     function main() {
         const favoriteButtons = document.querySelectorAll('.favorite-button');
         const containerContent = document.querySelector('.products-container-content')
-        const body = document.querySelector('.body')
+
+
 
         favoriteButtons.forEach(favoriteButton => {
             let currentSrc = favoriteButton.src.split('/').pop();
@@ -23,8 +24,10 @@ document.addEventListener('contentLoaded', () => {
         const currentlyCartAmount = document.querySelector('.cartAmount')
         let cartAmount = 0;
 
+
         addToCartButtons.forEach(addToCart => {
             let currentSrc = addToCart.src.split('/').pop()
+
 
             addToCart.addEventListener('click', () => {
                 if (currentSrc === 'cart-plus.svg') {
@@ -38,14 +41,20 @@ document.addEventListener('contentLoaded', () => {
                     cartAmount--
                 }
 
-                if (!body.style.width > "500px") {
-                    if (cartAmount === 0) {
-                        currentlyCartAmount.style.display = 'none'
-                    } else if (cartAmount > 0) {
-                        currentlyCartAmount.textContent = cartAmount
+                
+                if (cartAmount === 0) {
+                    currentlyCartAmount.style.display = 'none'
+                } else if (cartAmount > 0) {
+                    currentlyCartAmount.textContent = cartAmount
+                    if(parent.window.innerWidth > 500) {
                         currentlyCartAmount.style.display = 'flex'
+                    } else {
+                        currentlyCartAmount.style.display = 'none'
                     }
+
                 }
+                
+
             });
         });
 
@@ -271,7 +280,7 @@ document.addEventListener('contentLoaded', () => {
         getRatingValues();
 
 
-
+        const body = document.querySelector('.body')
 
         if (body.style.width > "500px") {
             articleLength();
