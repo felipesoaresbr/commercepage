@@ -1,0 +1,49 @@
+@media (min-width: 320px) and (max-width: 500px) {
+    body {
+        overflow-y: scroll;
+    }
+
+    .flash-promo {
+        height: fit-content;
+        
+    }
+
+    .flash-promo-header {
+        font-size: 0.8em;
+    }
+
+    .products-container {
+        min-width: fit-content;
+        max-width: fit-content;
+        min-height: fit-content;
+        max-height: fit-content;
+        background-color: transparent;
+
+        overflow: visible;
+    }
+
+    .products-container-content {
+
+        height: fit-content;
+        width: fit-content;
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: auto;
+
+        gap: 5px;
+    }
+
+    .product-item {
+        width: 100%;
+        justify-self: center;
+    }
+
+    .product-image {
+        max-width: 100px;
+    }
+
+    .product-arrows {
+        display: none;
+        pointer-events: none;
+    }
+}

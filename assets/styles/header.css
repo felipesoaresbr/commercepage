@@ -1,0 +1,145 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.header-area {
+    background-color: black;
+
+    color: white;
+
+    min-height: 70px;
+    max-height: 70px;
+    
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px;
+}
+
+.header-icons {
+    min-width: 25%;
+    max-width: 25%;
+
+    display: flex;
+    gap: 20px;
+}
+
+#menu-button:hover {
+    scale: 1.1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#profile-button:hover {
+    scale: 1.1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#cart-button:hover {
+    scale: 1.1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cartAmount {
+    position: absolute;
+    top: 10px;
+    left: 150px;
+    font-size: 0.6em;
+    max-height: 14px;
+    min-height: 14px;
+    min-width: 14px;
+    max-width: 14px;
+    border-radius: 50%;
+    
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+.header-search-bar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-radius: 40px;
+    justify-self: center;
+    overflow: hidden;
+}
+
+.header-search-bar .search-input {
+    width: 800px;
+    height: 100%;
+    border: none;
+    font-size: 0.9em;
+    padding: 20px;
+}
+
+.header-search-bar .search-input:focus {
+    border: none;
+    outline: none;
+}
+
+.header-search-bar .search-icon {
+    height: 100%;
+    width: 10%;
+    background-color: white;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-search-bar .search-icon #search-icon-svg:hover {
+    scale: 1.1;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.header-nav-menu {
+    min-width: 25%;
+    max-width: 25%;
+    cursor: pointer;
+    padding-left: 35px;
+}
+
+.header-nav-menu .menu {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+
+    font-size: 0.8em;
+}
+
+
+.header-nav-menu .menu .menu-items {
+    list-style-type: none;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding: 1px 0px;
+}
+
+.header-nav-menu .menu-items::after {
+    content: '';
+    background-color: white;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    border-radius: 2px;
+
+    transition: width 0.3s ease-out;
+}
+
+.header-nav-menu .menu-items:hover::after {
+    width: 100%;
+}

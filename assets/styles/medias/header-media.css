@@ -1,0 +1,54 @@
+@media (min-width: 320px) and (max-width: 500px) {
+
+    .header-area {
+        background-color: black;
+        width: 100%;
+        color: white;
+    
+        min-height: 80px;
+        max-height: 80px;
+        
+        
+        display: flex;
+    
+        align-items: center;
+        justify-content: space-between;
+    
+        padding: 15px;
+    }
+
+    .header-icons {
+        min-width: 10%;
+        max-width: 10;
+    
+        display: flex;
+        gap: 20px;
+    }
+
+    .header-search-bar {
+        width: 100%;
+    }
+
+    #cart-button {
+        display: none;
+
+    }
+
+    #profile-button {
+        display: none;
+    }
+
+    .header-nav-menu {
+        display: none;
+    }
+
+    .header-search-bar .search-icon {
+        height: 100%;
+        width: 40%;
+        background-color: white;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }

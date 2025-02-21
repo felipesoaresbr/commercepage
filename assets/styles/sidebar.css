@@ -1,0 +1,63 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.sidebar {
+    background-color: black;
+    height: 100vh;
+    width: 0%;
+
+    position: absolute;
+    z-index: 5;
+    box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.363);
+    pointer-events: none; 
+
+    overflow: auto;
+
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar.open {
+    width: 20%;
+    pointer-events: auto; 
+}
+
+.sidebar-content {
+    display: none;
+    color: white;
+    transform: all 0.3s ease-in-out;
+
+    width: 100%;
+    height: 100%;
+    white-space: nowrap;
+}
+
+.sidebar-content.open {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-content .sidebar-menu-container {
+    width: 100%;
+    
+}
+
+.sidebar-menu {
+    list-style-type: none;
+    padding: 15px;
+    text-indent: 5px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-menu:hover {
+    background-color: rgb(17, 17, 17);
+
+}
