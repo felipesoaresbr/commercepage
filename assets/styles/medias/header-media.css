@@ -27,6 +27,7 @@
 
     .header-search-bar {
         width: 100%;
+        background-color: white;
     }
 
     #cart-button {
@@ -44,12 +45,14 @@
 
     .header-search-bar .search-input {
         width: 80%;
+        border-radius: 0%;
     }
 
     .header-search-bar .search-icon {
         height: 100%;
         width: 20%;
         background-color: white;
+        outline: hidden;
         border: none;
         display: flex;
         justify-content: center;
