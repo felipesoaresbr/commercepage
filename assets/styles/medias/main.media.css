@@ -13,7 +13,8 @@
     }
 
     .products-container {
-        height: fit-content;
+        min-height: 0%;
+        max-height: 100%;
         background-color: transparent;
     }
 
