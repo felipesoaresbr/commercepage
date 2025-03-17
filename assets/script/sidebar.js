@@ -13,6 +13,7 @@ document.addEventListener('contentLoaded', () => {
         sidebarContent.classList.toggle('open')
         shadowBox.classList.toggle('visible')
 
+
         if(sidebar.classList.contains('open')) {
             body.style.overflowY = 'hidden'
         } else {

@@ -1,63 +1,68 @@
 document.addEventListener('contentLoaded', () => {
+    const currentlyCartAmount = document.querySelector('.cartAmount');
+
+    let cartAmount = parseInt(localStorage.getItem('amount')) || 0;
+    
+    // Atualiza o valor inicial do cartAmount
+    currentlyCartAmount.textContent = cartAmount;
+
+    
     function main() {
         const favoriteButtons = document.querySelectorAll('.favorite-button');
-        const containerContent = document.querySelector('.products-container-content')
-
-
-
+        const containerContent = document.querySelector('.products-container-content');
+        let prices = document.querySelectorAll('.current-price');
+        let storagePrices = [];
+    
         favoriteButtons.forEach(favoriteButton => {
             let currentSrc = favoriteButton.src.split('/').pop();
-
+    
             favoriteButton.addEventListener('click', () => {
-
                 if (currentSrc === 'heart.svg') {
                     favoriteButton.src = './assets/icons/heart-fill.svg';
-                    currentSrc = 'heart-fill.svg'
+                    currentSrc = 'heart-fill.svg';
                 } else {
                     favoriteButton.src = './assets/icons/heart.svg';
-                    currentSrc = 'heart.svg'
+                    currentSrc = 'heart.svg';
                 }
             });
         });
-
+    
         const addToCartButtons = document.querySelectorAll('.add-cart-button');
-        const currentlyCartAmount = document.querySelector('.cartAmount')
-        let cartAmount = 0;
-
-
-        addToCartButtons.forEach(addToCart => {
-            let currentSrc = addToCart.src.split('/').pop()
-
-
+        const articles = document.querySelectorAll('.product-item');
+    
+        addToCartButtons.forEach((addToCart, index) => {
+            let currentSrc = addToCart.src.split('/').pop();
+    
             addToCart.addEventListener('click', () => {
                 if (currentSrc === 'cart-plus.svg') {
-                    addToCart.src = './assets/icons/cart-check-fill.svg'
-                    currentSrc = 'cart-check-fill.svg'
-
-                    cartAmount++
-                } else {
-                    addToCart.src = './assets/icons/cart-plus.svg'
-                    currentSrc = 'cart-plus.svg'
-                    cartAmount--
-                }
-
-                
-                if (cartAmount === 0) {
-                    currentlyCartAmount.style.display = 'none'
-                } else if (cartAmount > 0) {
-                    currentlyCartAmount.textContent = cartAmount
-                    if(parent.window.innerWidth > 500) {
-                        currentlyCartAmount.style.display = 'flex'
-                    } else {
-                        currentlyCartAmount.style.display = 'none'
+                    addToCart.src = './assets/icons/cart-check-fill.svg';
+                    currentSrc = 'cart-check-fill.svg';
+                    cartAmount++;
+    
+                    if (cartAmount <= 6) {
+                        const price = prices[index].textContent;
+                        storagePrices.push(price);
+    
+                        localStorage.setItem('prices', JSON.stringify(storagePrices));
                     }
-
+                } else if (cartAmount <= 0) {
+                    return;
+                } else {
+                    addToCart.src = './assets/icons/cart-plus.svg';
+                    currentSrc = 'cart-plus.svg';
+                    cartAmount--;
+    
+                    storagePrices.splice(index, 1);
+                    localStorage.setItem('prices', JSON.stringify(storagePrices));
                 }
-                
-
+    
+                localStorage.setItem('amount', cartAmount);
+    
+                currentlyCartAmount.textContent = cartAmount;
             });
         });
-
+    
+    
         function setTimer() {
             let hours = 23;
             let minutes = 59;
@@ -95,8 +100,6 @@ document.addEventListener('contentLoaded', () => {
         setTimer();
 
         function articleLength() {
-            const articles = document.querySelectorAll('.product-item');
-
             containerContent.style.gridTemplateColumns = `repeat(${articles.length}, 300px)`;
         }
 
@@ -280,17 +283,10 @@ document.addEventListener('contentLoaded', () => {
         getRatingValues();
 
 
-        const body = document.querySelector('.body')
-
-        if (body.style.width > "500px") {
+        if (window.innerWidth > 500) {
             articleLength();
         }
 
     }
-
     main();
 })
-
-
-
-

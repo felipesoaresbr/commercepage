@@ -5,24 +5,18 @@
         width: 100%;
         color: white;
     
-        min-height: 80px;
-        max-height: 80px;
-        
+        height: 120px;
         
         display: flex;
-    
-        align-items: center;
-        justify-content: space-between;
-    
+
+        flex-direction: column;
         padding: 15px;
     }
 
     .header-icons {
-        min-width: 10%;
-        max-width: 10;
-    
+        width: 100%;
         display: flex;
-        gap: 20px;
+        justify-content: space-around;
     }
 
     .header-search-bar {
@@ -30,13 +24,12 @@
         background-color: white;
     }
 
-    #cart-button {
-        display: none;
-
+    #menu-button {
+        transform: scale(1.2);
     }
 
     #profile-button {
-        display: none;
+        transform: scale(1.2);
     }
 
     .header-nav-menu {
@@ -44,20 +37,18 @@
     }
 
     .header-search-bar .search-input {
-        width: 85%;
         border-radius: 0%;
     }
 
     .header-search-bar .search-icon {
         height: 100%;
-        width: 15%;
+        margin: 20px;
         background-color: white;
         outline: hidden;
         border: none;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
     }
   }
 

@@ -1,34 +1,33 @@
 body {
     width: 100vw;
     height: 100vh;
+    margin: 0;
+    overflow-x: hidden; /* Evitar rolagem horizontal */
 }
-
 
 .sidebar {
     background-color: black;
     height: 100vh;
     width: 0%;
-
     position: absolute;
     z-index: 5;
     box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.363);
     pointer-events: none; 
-
     overflow: hidden;
-
     transition: all 0.3s ease-in-out;
 }
 
+/* Sidebar quando aberta em telas maiores */
 .sidebar.open {
-    width: 20%;
+    width: 20%; /* Para dispositivos maiores (desktop, tablet) */
     pointer-events: auto; 
 }
 
+/* Conteúdo da sidebar */
 .sidebar-content {
     display: none;
     color: white;
     transform: all 0.3s ease-in-out;
-
     width: 100%;
     height: 100%;
     white-space: nowrap;
@@ -36,14 +35,12 @@ body {
 
 .sidebar-content.open {
     display: flex;
-
     flex-direction: column;
     align-items: center;
 }
 
-.sidebar-content .sidebar-menu-container {
+.sidebar-menu-container {
     width: 100%;
-    
 }
 
 .sidebar-menu {
@@ -51,7 +48,6 @@ body {
     padding: 15px;
     text-indent: 5px;
     cursor: pointer;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -59,4 +55,43 @@ body {
 
 .sidebar-menu:hover {
     background-color: rgb(17, 17, 17);
+}
+
+/* Media Queries para dispositivos móveis */
+@media (max-width: 500px) {
+    /* Para dispositivos móveis, a sidebar ocupará 100% da largura e altura da tela */
+    .sidebar {
+        width: 0%; /* Inicia fechada */
+        height: 100vh; /* Ocupa toda a altura da tela */
+        pointer-events: none;
+        overflow: hidden;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar.open {
+        width: 100%; /* Quando aberta, ocupa toda a largura da tela */
+    }
+
+    .sidebar-content.open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Media Query para telas maiores que 500px */
+@media (min-width: 501px) and (max-width: 1919px) {
+    /* Para dispositivos maiores (como tablets e desktops) */
+    body {
+        height: 100vh;
+    }
+
+    .sidebar {
+        width: 100vw;
+        height: 0vh;
+    }
+
+    .sidebar.open {
+        height: 100vh; /* A altura permanece ocupando 100% da tela */
+    }
 }
