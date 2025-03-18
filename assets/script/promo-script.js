@@ -2,10 +2,14 @@ document.addEventListener('contentLoaded', () => {
     const currentlyCartAmount = document.querySelector('.cartAmount');
 
     let cartAmount = parseInt(localStorage.getItem('amount')) || 0;
-    
-    // Atualiza o valor inicial do cartAmount
+
     currentlyCartAmount.textContent = cartAmount;
 
+    if(cartAmount > 0) {
+        currentlyCartAmount.style.display = 'flex'
+    } else {
+        currentlyCartAmount.style.display = 'none'
+    }
     
     function main() {
         const favoriteButtons = document.querySelectorAll('.favorite-button');
@@ -51,7 +55,8 @@ document.addEventListener('contentLoaded', () => {
                     addToCart.src = './assets/icons/cart-plus.svg';
                     currentSrc = 'cart-plus.svg';
                     cartAmount--;
-    
+                    
+
                     storagePrices.splice(index, 1);
                     localStorage.setItem('prices', JSON.stringify(storagePrices));
                 }
