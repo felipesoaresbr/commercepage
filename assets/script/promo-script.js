@@ -2,24 +2,37 @@ document.addEventListener('contentLoaded', () => {
     const currentlyCartAmount = document.querySelector('.cartAmount');
 
     let cartAmount = parseInt(localStorage.getItem('amount')) || 0;
+    let storagePrices = JSON.parse(localStorage.getItem('prices')) || []; 
 
     currentlyCartAmount.textContent = cartAmount;
 
-    if(cartAmount > 0) {
-        currentlyCartAmount.style.display = 'flex'
+    if (cartAmount > 0) {
+        currentlyCartAmount.style.display = 'flex';
     } else {
-        currentlyCartAmount.style.display = 'none'
+        currentlyCartAmount.style.display = 'none';
     }
-    
+
     function main() {
         const favoriteButtons = document.querySelectorAll('.favorite-button');
         const containerContent = document.querySelector('.products-container-content');
         let prices = document.querySelectorAll('.current-price');
-        let storagePrices = [];
-    
+
+        function updateCartAmount() {
+            cartAmount = storagePrices.length; 
+            currentlyCartAmount.textContent = cartAmount;
+
+            if (cartAmount > 0) {
+                currentlyCartAmount.style.display = 'flex';
+            } else {
+                currentlyCartAmount.style.display = 'none';
+            }
+
+            localStorage.setItem('amount', cartAmount);
+        }
+
         favoriteButtons.forEach(favoriteButton => {
             let currentSrc = favoriteButton.src.split('/').pop();
-    
+
             favoriteButton.addEventListener('click', () => {
                 if (currentSrc === 'heart.svg') {
                     favoriteButton.src = './assets/icons/heart-fill.svg';
@@ -30,57 +43,47 @@ document.addEventListener('contentLoaded', () => {
                 }
             });
         });
-    
+
         const addToCartButtons = document.querySelectorAll('.add-cart-button');
         const articles = document.querySelectorAll('.product-item');
-    
+
         addToCartButtons.forEach((addToCart, index) => {
             let currentSrc = addToCart.src.split('/').pop();
-    
+
             addToCart.addEventListener('click', () => {
                 if (currentSrc === 'cart-plus.svg') {
                     addToCart.src = './assets/icons/cart-check-fill.svg';
                     currentSrc = 'cart-check-fill.svg';
-                    cartAmount++;
-    
-                    if (cartAmount <= 6) {
-                        const price = prices[index].textContent;
-                        storagePrices.push(price);
-    
-                        localStorage.setItem('prices', JSON.stringify(storagePrices));
-                    }
-                } else if (cartAmount <= 0) {
-                    return;
+
+                    const price = prices[index].textContent;
+                    storagePrices.push(price);
+                    localStorage.setItem('prices', JSON.stringify(storagePrices));
+
                 } else {
                     addToCart.src = './assets/icons/cart-plus.svg';
                     currentSrc = 'cart-plus.svg';
-                    cartAmount--;
-                    
 
                     storagePrices.splice(index, 1);
                     localStorage.setItem('prices', JSON.stringify(storagePrices));
                 }
-    
-                localStorage.setItem('amount', cartAmount);
-    
-                currentlyCartAmount.textContent = cartAmount;
+
+                updateCartAmount();
             });
         });
-    
-    
+
         function setTimer() {
             let hours = 23;
             let minutes = 59;
             let seconds = 59;
 
-            const timerDisplay = document.getElementById('timer')
+            const timerDisplay = document.getElementById('timer');
 
             function formatTimer(unit) {
                 return unit < 10 ? '0' + unit : unit;
             }
 
             function updateTimer() {
-                timerDisplay.textContent = `${formatTimer(hours)}:${formatTimer(minutes)}:${formatTimer(seconds)}`
+                timerDisplay.textContent = `${formatTimer(hours)}:${formatTimer(minutes)}:${formatTimer(seconds)}`;
 
                 if (seconds > 0) {
                     seconds--;
@@ -93,15 +96,17 @@ document.addEventListener('contentLoaded', () => {
                         if (hours > 0) {
                             hours--;
                         } else {
-                            clearInterval(timerInterval)
+                            clearInterval(timerInterval);
                         }
                     }
                 }
             }
+
             const timerInterval = setInterval(updateTimer, 1000);
 
             updateTimer();
         }
+
         setTimer();
 
         function articleLength() {
@@ -134,7 +139,6 @@ document.addEventListener('contentLoaded', () => {
 
             updateArrowState();
 
-
             scrollRightArrow.addEventListener('click', function () {
                 const itemWidth = 300;
                 const scrollAmount = itemWidth + 20;
@@ -145,7 +149,7 @@ document.addEventListener('contentLoaded', () => {
                 });
 
                 updateArrowState();
-            })
+            });
 
             scrollLeftArrow.addEventListener('click', function () {
                 const itemWidth = 300;
@@ -155,14 +159,14 @@ document.addEventListener('contentLoaded', () => {
                     left: -scrollAmount,
                     behavior: 'smooth'
                 });
+
                 updateArrowState();
-            })
+            });
 
             updateArrowState();
         }
 
         containerScroller();
-
 
         function updatePrices() {
             function randomizePrice() {
@@ -204,12 +208,11 @@ document.addEventListener('contentLoaded', () => {
         updatePrices();
 
         function updateStock() {
-
             function randomizeAmount() {
                 const min = 0;
                 const max = 79;
 
-                return Math.floor(Math.random() * (max - min) + min)
+                return Math.floor(Math.random() * (max - min) + min);
             }
 
             const stocks = document.querySelectorAll('.product-stock');
@@ -217,7 +220,7 @@ document.addEventListener('contentLoaded', () => {
 
             unformatedAmounts.forEach((unformatedAmount, index) => {
                 const newAmount = randomizeAmount();
-                unformatedAmount.textContent = `${newAmount} UNIDADES`
+                unformatedAmount.textContent = `${newAmount} UNIDADES`;
 
                 let formatedAmount = Number(unformatedAmount.textContent.split(' ').shift());
 
@@ -244,7 +247,7 @@ document.addEventListener('contentLoaded', () => {
             const ratingContainers = document.querySelectorAll('.product-rating');
 
             ratingContainers.forEach(container => {
-                const ratingStats = container.querySelector('.rating-stats')
+                const ratingStats = container.querySelector('.rating-stats');
                 const emptyStars = container.querySelectorAll('.rating-star');
 
                 const randomRating = randomizeRating();
@@ -252,8 +255,7 @@ document.addEventListener('contentLoaded', () => {
                 const fullStars = Math.floor(randomRating);
                 const hasHalfStar = randomRating % 1 >= 0.5; // 
 
-                ratingStats.textContent = randomRating
-
+                ratingStats.textContent = randomRating;
 
                 emptyStars.forEach((star, index) => {
                     if (index < fullStars) {
@@ -264,34 +266,33 @@ document.addEventListener('contentLoaded', () => {
                         star.src = './assets/icons/star.svg';
                     }
                 });
-            })
+            });
 
         }
 
         updateRating();
 
         function getRatingValues() {
-            const ratingValues = document.querySelectorAll('.rating-value')
+            const ratingValues = document.querySelectorAll('.rating-value');
 
             function randomizeValues() {
                 const min = 30;
                 const max = 150;
 
-                return Math.floor(Math.random() * (min - max) + max)
+                return Math.floor(Math.random() * (min - max) + max);
             }
 
             ratingValues.forEach(ratingValues => {
                 ratingValues.textContent = "(" + `${randomizeValues()}` + ")";
-            })
+            });
         }
 
         getRatingValues();
 
-
         if (window.innerWidth > 500) {
             articleLength();
         }
-
     }
+
     main();
-})
+});
