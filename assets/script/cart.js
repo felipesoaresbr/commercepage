@@ -12,7 +12,7 @@ document.addEventListener('contentLoaded', () => {
         if (cartAmount === 0) {
             currentlyCartAmount.style.display = 'none';
             cartAside.style.display = 'none';
-            cartContainer.innerHTML = '<article class="cart-is-empty"><p>O seu carrinho está vazinho, continue <a href= "/commercepage/index.html">comprando</a></p></article>';
+            cartContainer.innerHTML = '<article class="cart-is-empty"><p>O seu carrinho está vazinho, continue <a href= "index.html">comprando</a></p></article>';
         } else {
             currentlyCartAmount.style.display = 'flex';
             cartAside.style.display = 'block';
